@@ -33,7 +33,7 @@ class DataTest(TestCase):
         print(f'STUDENT API TEST: inside test, response content is {student_response.content}\n')
         student_stream = io.BytesIO(student_response.content)
         print(f'STUDENT API TEST: inside test, student stream is {student_stream}\n')
-        student_api_data = JSONParser.parse(student_stream)
+        student_api_data = JSONParser().parse(stream=student_stream)
         print(f'STUDENT API TEST: inside test, student api data is {student_api_data}\n')
         first_student_data = student_api_data[0]
         print(f'STUDENT API TEST: inside test, first student data is {first_student_data} id is {first_student_data["id"]}\n')
