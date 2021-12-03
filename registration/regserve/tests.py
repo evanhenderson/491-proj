@@ -22,6 +22,18 @@ class DataTest(TestCase):
             gpa = 2.0
         )
 
+    def test_student_api(self):
+        student_response = self.test_client.get('/regserve/data/students/')
+        print(f'STUDENT API TEST: inside test, response is {student_response} and the status code is {student_response.status_code}\n')
+        self.assertEqual(student_response.status_code, 200)
+
+
+        print(f'STUDENT API TEST: inside test, response is {student_response}\n')
+        print(f'STUDENT API TEST: inside test, response is {student_response}\n')
+        print(f'STUDENT API TEST: inside test, response is {student_response}\n')
+        print(f'STUDENT API TEST: inside test, response is {student_response}\n')
+        print(f'STUDENT API TEST: inside test, response is {student_response}\n')
+
 
     def test_student(self):
         student_list = Student.objects.all()
@@ -42,3 +54,4 @@ class SimpleTest(TestCase):
         print(f'Inside HW test, response is {response}')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, b"Hello from Django backend")
+        
