@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import *
 from rest_framework import serializers
 from .serializers import *
-from rest_framework import genereics
+from rest_framework import generics
 
 # Create your views here.
 def index(request):
