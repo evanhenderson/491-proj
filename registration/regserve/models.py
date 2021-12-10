@@ -1,7 +1,7 @@
 from django.core import validators
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-
+from django.urls import reverse, reverse_lazy
 # Create your models here.
 
 class Person(models.Model):
@@ -21,6 +21,7 @@ class Person(models.Model):
 
     def __str__(self):
         return f'Name: {self.full_name}, Id Number: {self.idnumber}, email: {self.email}'
+    
 
 class Student(Person):
     YEAR_IN_SCHOOL = [
@@ -46,3 +47,6 @@ class Student(Person):
     
     def __str__(self):
         return f'StudentId: {self.id}: {super(Student, self).__str__()}, year in school: {self.schoolyear}, major: {self.major}, GPA: {self.gpa}'
+    
+    def get_absolute_url(self):
+        return reverse_lazy('registration:students')
