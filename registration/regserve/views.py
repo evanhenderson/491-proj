@@ -16,3 +16,7 @@ class StudentListCreate(generics.ListCreateAPIView):
 
 class StudentListForm(ListView):
     model = Student
+
+class StudentCreateForm(CreateView, ListView):
+    model = Student
+    fields = ['firstname', 'lastname', 'idnumber', 'schoolyear', 'major', 'gpa']

@@ -5,6 +5,13 @@
         <title>Student List Form</title>
     </head>
     <body>
+        <h1> Add Student Form </h1>
+        <div id="form_div">
+            <form id="student_form" method="POST">
+                {{ form.as_p }}
+                <input type="submit" id="submit_button" value="save">
+            </form>
+        </div>
         <h1>Student List</h1>
         <!-- -->
         <div id="table_div">
