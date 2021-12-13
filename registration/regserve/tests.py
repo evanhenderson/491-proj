@@ -73,6 +73,33 @@ class DataTest(TestCase):
         self.assertEqual(student.idnumber, 100)
         self.assertEqual(student.major, 'CS')
         self.assertEqual(student.gpa, 4.0)
+    
+    def test_student_delete(self):
+        student_delete_log = DataTest.log_setup("student_delete", "../logs/student_delete.log", 'w')
+        original_student_list = Student.objects.all()
+        student_delete_log.info(f'STUDENT DELETE TEST: inside test, original student list is {original_student_list}\n')
+        for student in original_student_list:
+            self.test_client.post(f'/regserve/deletestudent/{student.id}')
+        new_student_list = Student.objects.all()
+        student_delete_log.info(f'STUDENT DELETE TEST: inside test, new student list is {new_student_list}\n')
+        self.assertNotEqual(original_student_list, new_student_list)
+    
+    def test_student_edit(self):
+        student_edit_log = DataTest.log_setup("student edit", "../logs/student_edit.log", 'w')
+        original_student_list = Student.objects.all()
+        student_edit_log.info(f'STUDENT EDIT TEST: inside test, original student list is {original_student_list}\n')
+        for student in original_student_list:
+            self.test_client.post(f'/regserve/editstudent/{student.id}', {'firstname': 'John', 'lastname': 'Smith', 'idnumber': '200', 'schoolyear': 'FR', 'major': 'CS', 'gpa': '4.0'})
+        new_student_list = Student.objects.all()
+        student_edit_log.info(f'STUDENT EDIT TEST: inside test, new student list is {new_student_list}\n')
+        self.assertNotEqual(original_student_list, new_student_list)
+        for student in new_student_list:
+            self.assertEqual(student.firstname, 'John')
+            self.assertEqual(student.lastname, 'Smith')
+            self.assertEqual(student.idnumber, 200)
+            self.assertEqual(student.schoolyear, 'FR')
+            self.assertEqual(student.major, 'CS')
+            self.assertEqual(student.gpa, 4.0)
 class SimpleTest(TestCase):
     def setUp(self):
         self.test_client = Client()
