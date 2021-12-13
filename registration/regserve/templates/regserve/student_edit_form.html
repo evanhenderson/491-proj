@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Student List Form</title>
+    </head>
+    <body>
+        <h1> Student Edit Form </h1>
+        <div id="form_div">
+            <form id="student_form" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" id="submit_button" value="update">
+            </form>
+        </div>
+        <h1>Student List</h1>
+        <!-- -->
+        <div id="table_div">
+            <table>
+                <thead>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>ID Number</th>
+                    <th>Year In School</th>
+                    <th>Major</th>
+                    <th>GPA</th>
+                    <th>Date Created</th>
+                    <th>Date Modified</th>
+                </thead>
+                <tbody>
+                    <tr>
+                    {% for student in object_list %}
+                        <td> {{ student.id }}</td>
+                        <td> {{ student.firstname }}</td>
+                        <td> {{ student.lastname }}</td>
+                        <td> {{ student.idnumber }}</td>
+                        <td> {{ student.schoolyear }}</td>
+                        <td> {{ student.major }}</td>
+                        <td> {{ student.gpa }}</td>
+                        <td> {{ student.datecreated }}</td>
+                        <td> {{ student.datemodified }}</td>
+                    {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

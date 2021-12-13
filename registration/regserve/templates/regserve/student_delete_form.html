@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Delete Form</title>
+    </head>
+    <body>
+        <h1>Student Delete Form</h1>
+        <div class="container pt-5">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                <p>Are you sure you want to delete student "{{ object.firstname }} {{ object.lastname }}"?</p>
+                <input type="submit" value="confirm">
+            </form>
+        </div>        
+    </body>
