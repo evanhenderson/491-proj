@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 
 app_name = 'regserve'
-
+#url patterns that allows access to all parts of API
 urlpatterns = [
     path('/students/', views.StudentListForm.as_view(), name="students"),
     path('/createstudent/', views.StudentCreateForm.as_view(), name="create_students"),

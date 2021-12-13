@@ -7,6 +7,7 @@ from rest_framework.parsers import JSONParser
 import logging
 
 class DataTest(TestCase):
+    #sets up logging
     def log_setup(logger_name, log_file, mode='w'):
         new_log = logging.getLogger(logger_name)
         formatter = logging.Formatter('%(asctime)s : %(message)s')
@@ -19,6 +20,7 @@ class DataTest(TestCase):
         new_log.addHandler(file_handler)
         new_log.addHandler(stream_handler)
         return new_log
+    #creates a test database for the tests to utilize
     def setUp(self):
         self.test_client = Client()
         Student.objects.create(
@@ -39,7 +41,7 @@ class DataTest(TestCase):
             major = 'ENG',
             gpa = 2.0
         )
-
+    #tests that database was created properly and is accessible, tests serializer for functionality
     def test_student_api(self):
         student_api_log = DataTest.log_setup("student_api", "../logs/student_api.log", 'w')
         student_response = self.test_client.get('/regserve/data/students/')
@@ -61,7 +63,7 @@ class DataTest(TestCase):
         student_api_log.info(f'STUDENT API TEST: inside test, first student API is {first_student_api}\n')
         self.assertEqual(first_student_api, first_student_db)
 
-
+    #tests that student objects in the test database exist and are defined properly
     def test_student(self):
         student_list_log = DataTest.log_setup("student_list", "../logs/student_list.log", 'w')
         student_list = Student.objects.all()
@@ -73,7 +75,7 @@ class DataTest(TestCase):
         self.assertEqual(student.idnumber, 100)
         self.assertEqual(student.major, 'CS')
         self.assertEqual(student.gpa, 4.0)
-    
+    #tests delete functionality by deleting entire test database one object at a time and checks that database has changed
     def test_student_delete(self):
         student_delete_log = DataTest.log_setup("student_delete", "../logs/student_delete.log", 'w')
         original_student_list = Student.objects.all()
@@ -83,7 +85,7 @@ class DataTest(TestCase):
         new_student_list = Student.objects.all()
         student_delete_log.info(f'STUDENT DELETE TEST: inside test, new student list is {new_student_list}\n')
         self.assertNotEqual(original_student_list, new_student_list)
-    
+    #tests editing functionality by changing all test database entries to a specific student, checks that database changed and asserts all contents are correct
     def test_student_edit(self):
         student_edit_log = DataTest.log_setup("student edit", "../logs/student_edit.log", 'w')
         original_student_list = Student.objects.all()
@@ -100,10 +102,11 @@ class DataTest(TestCase):
             self.assertEqual(student.schoolyear, 'FR')
             self.assertEqual(student.major, 'CS')
             self.assertEqual(student.gpa, 4.0)
+#intitial test for project setup
 class SimpleTest(TestCase):
     def setUp(self):
         self.test_client = Client()
-
+    #tests for a HTTP response from '/regserve'
     def test_response(self):
         simple_log = DataTest.log_setup("simple", "../logs/simple.log", 'w')
         response = self.test_client.get('/regserve')
