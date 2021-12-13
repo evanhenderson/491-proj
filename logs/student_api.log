@@ -1,0 +1,27 @@
+2021-12-13 04:07:50,847 : STUDENT API TEST: inside test, response is <Response status_code=200, "application/json"> and the status code is 200
+
+2021-12-13 04:07:50,848 : STUDENT API TEST: inside test, response content is b'[{"id":1,"firstname":"First","lastname":"Student","idnumber":100,"email":"first@student.edu","schoolyear":"FR","gpa":4.0,"datecreated":"2021-12-13T04:07:50.819564Z","datemodified":"2021-12-13T04:07:50.819694Z"},{"id":2,"firstname":"Second","lastname":"Student","idnumber":101,"email":"first@student.edu","schoolyear":"SR","gpa":2.0,"datecreated":"2021-12-13T04:07:50.821225Z","datemodified":"2021-12-13T04:07:50.821315Z"}]'
+
+2021-12-13 04:07:50,848 : STUDENT API TEST: inside test, student stream is <_io.BytesIO object at 0x7fe92b56a360>
+
+2021-12-13 04:07:50,849 : STUDENT API TEST: inside test, student api data is [{'id': 1, 'firstname': 'First', 'lastname': 'Student', 'idnumber': 100, 'email': 'first@student.edu', 'schoolyear': 'FR', 'gpa': 4.0, 'datecreated': '2021-12-13T04:07:50.819564Z', 'datemodified': '2021-12-13T04:07:50.819694Z'}, {'id': 2, 'firstname': 'Second', 'lastname': 'Student', 'idnumber': 101, 'email': 'first@student.edu', 'schoolyear': 'SR', 'gpa': 2.0, 'datecreated': '2021-12-13T04:07:50.821225Z', 'datemodified': '2021-12-13T04:07:50.821315Z'}]
+
+2021-12-13 04:07:50,850 : STUDENT API TEST: inside test, first student data is {'id': 1, 'firstname': 'First', 'lastname': 'Student', 'idnumber': 100, 'email': 'first@student.edu', 'schoolyear': 'FR', 'gpa': 4.0, 'datecreated': '2021-12-13T04:07:50.819564Z', 'datemodified': '2021-12-13T04:07:50.819694Z'} id is 1
+
+2021-12-13 04:07:50,856 : STUDENT API TEST: inside test, first student db is StudentId: 1: Name: First Student, Id Number: 100, email: first@student.edu, year in school: FR, major: CS, GPA: 4.0
+
+2021-12-13 04:07:50,861 : STUDENT API TEST: inside test, first student serializer is StudentSerializer(<Student: StudentId: 1: Name: First Student, Id Number: 100, email: first@student.edu, year in school: FR, major: CS, GPA: 4.0>, data={'id': 1, 'firstname': 'First', 'lastname': 'Student', 'idnumber': 100, 'email': 'first@student.edu', 'schoolyear': 'FR', 'gpa': 4.0, 'datecreated': '2021-12-13T04:07:50.819564Z', 'datemodified': '2021-12-13T04:07:50.819694Z'}):
+    id = IntegerField(label='ID', read_only=True)
+    firstname = CharField(max_length=50)
+    lastname = CharField(max_length=50)
+    idnumber = IntegerField()
+    email = EmailField(allow_blank=True, max_length=254, required=False)
+    schoolyear = ChoiceField(choices=[('FR', 'Freshman'), ('SO', 'Sophmore'), ('JR', 'Junior'), ('SR', 'Senior'), ('GR', 'Graduate')])
+    gpa = FloatField(required=False)
+    datecreated = DateTimeField(read_only=True)
+    datemodified = DateTimeField(read_only=True)
+
+2021-12-13 04:07:50,876 : STUDENT API TEST: inside test, first student serializer data valid? True
+
+2021-12-13 04:07:50,881 : STUDENT API TEST: inside test, first student API is StudentId: 1: Name: First Student, Id Number: 100, email: first@student.edu, year in school: FR, major: CS, GPA: 4.0
+

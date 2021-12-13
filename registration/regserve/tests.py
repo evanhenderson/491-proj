@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 
-from registration.regserve.serializers import StudentSerializer
+from .serializers import *
 from .models import *
 import io
 from rest_framework.parsers import JSONParser
@@ -20,6 +20,7 @@ class DataTest(TestCase):
         new_log.addHandler(stream_handler)
         return new_log
     def setUp(self):
+        self.test_client = Client()
         Student.objects.create(
             firstname = "First",
             lastname = "Student",
@@ -40,7 +41,7 @@ class DataTest(TestCase):
         )
 
     def test_student_api(self):
-        student_api_log = DataTest.log_setup("student_api", "/491Proj/logs/student_api.log", 'w')
+        student_api_log = DataTest.log_setup("student_api", "../logs/student_api.log", 'w')
         student_response = self.test_client.get('/regserve/data/students/')
         student_api_log.info(f'STUDENT API TEST: inside test, response is {student_response} and the status code is {student_response.status_code}\n')
         self.assertEqual(student_response.status_code, 200)
@@ -62,7 +63,7 @@ class DataTest(TestCase):
 
 
     def test_student(self):
-        student_list_log = DataTest.log_setup("student_list", "/491Proj/logs/student_list.log", 'w')
+        student_list_log = DataTest.log_setup("student_list", "../logs/student_list.log", 'w')
         student_list = Student.objects.all()
         for student in student_list:
             student_list_log.info(f'Inside test_student, current student is {student}\n')
@@ -77,7 +78,7 @@ class SimpleTest(TestCase):
         self.test_client = Client()
 
     def test_response(self):
-        simple_log = DataTest.log_setup("simple", "/491Proj/logs/simple.log", 'w')
+        simple_log = DataTest.log_setup("simple", "../logs/simple.log", 'w')
         response = self.test_client.get('/regserve')
         simple_log.info(f'Inside HW test, response is {response}')
         self.assertEqual(response.status_code, 200)

@@ -1,0 +1,4 @@
+2021-12-13 04:07:50,813 : Inside test_student, current student is StudentId: 1: Name: First Student, Id Number: 100, email: first@student.edu, year in school: FR, major: CS, GPA: 4.0
+
+2021-12-13 04:07:50,814 : Inside test_student, current student is StudentId: 2: Name: Second Student, Id Number: 101, email: first@student.edu, year in school: SR, major: ENG, GPA: 2.0
+
