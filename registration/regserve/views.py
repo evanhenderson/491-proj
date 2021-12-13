@@ -21,6 +21,7 @@ class StudentEdit(UpdateView, ListView):
     pk_url_kwarg = 'pk'
     template_name = 'regserve/student_edit_form.html'
     success_url = 'regserve/students'
+    fields = ['firstname', 'lastname', 'idnumber', 'schoolyear', 'major', 'gpa']
 
 class StudentListCreate(generics.ListCreateAPIView):
     queryset = Student.objects.all()
